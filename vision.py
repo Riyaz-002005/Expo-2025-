@@ -30,6 +30,12 @@ def set_background(image_file):
         .stApp {{
             background-image: url(data:image/png;base64,{encoded});
             background-size: cover;
+            background-position: center;
+        }}
+        @media (max-width: 768px) {{
+            .stApp {{
+                background-size: contain;
+            }}
         }}
         </style>
         """,

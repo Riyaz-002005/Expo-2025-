@@ -56,7 +56,7 @@ st.markdown(
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         background-color: #28a745;
         color: white;
-        border: 2px solid black;
+        border: 2px solid white;
     }
     .stButton>button:hover {
         transform: scale(1.05);

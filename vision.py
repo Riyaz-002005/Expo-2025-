@@ -20,24 +20,26 @@ def get_gemini_response(input, image):
         response = model.generate_content(image)
     return response.text
 
-def set_background(image_file):
-    with open(image_file, "rb") as f:
-        data = f.read()
-    encoded = base64.b64encode(data).decode()
+def set_background():
     st.markdown(
-        f"""
+        """
         <style>
-        .stApp {{
-            background-image: url(data:image/png;base64,{encoded});
+        .stApp {
+            background-color: #FFFFFF;
+            background-image: linear-gradient(180deg, #FFFFFF 0%, #6284FF 50%, #FF0000 100%);
             background-size: cover;
-        }}
+        }
+        header {
+            opacity: 0.5; /* Change this value to adjust the transparency */
+        }
         </style>
         """,
         unsafe_allow_html=True
     )
 
-# Set the background image
-set_background("images 3.jpg")
+# Set the gradient background
+set_background()
+
 
 st.markdown("<h1 style='font-style: italic;'>ChatBot with Image Recognition</h1>", unsafe_allow_html=True)
 input = st.text_input(" ChatBox: ", key="input")
@@ -80,16 +82,6 @@ st.markdown(
     .stSuccess {
         animation: fadeIn 1s ease-in-out;
     }
-    .footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: rgba(73, 65, 65, 0);
-        color: white;
-        text-align: center;
-        padding: 10px;
-    }
     </style>
     """,
     unsafe_allow_html=True
@@ -105,12 +97,3 @@ if submit:
             response = get_gemini_response(input, image)
         st.success("Response generated!", icon="✅")
         st.write(response)
-
-st.markdown(
-    """
-    <div class="footer">
-        <p>&copy; 2023 Google Gemini API. All rights reserved. <a href="https://policies.google.com/terms" style="color: white;">Terms and Conditions</a></p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
